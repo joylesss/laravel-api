@@ -43,6 +43,8 @@ class User extends Authenticatable
     ];
     public function blog()
     {
-        return $this->hasMany(Blog::class);
+        return $this->hasMany(Blog::class);# Anh muốn bổ sung thêm quan hệ khóa ngoại nữa, vì query ở bên kia e đang sử dụng là find() thì sẽ tự động match
+        #cột khóa ngoại user_id của bảng Blog, tương ứng với trường id của bảng Users.
+        #nếu trong trường hợp khóa ngoại không đặt là user_id mà đặt một tên khác thì cần truyền thêm một tham số thứ 2.
     }
 }
