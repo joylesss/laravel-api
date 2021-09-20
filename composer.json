@@ -1,0 +1,13 @@
+{
+    "name": "acer/laravel-passport-rest-api-example",
+    "description": "laravel-api-passport",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Huuthuong",
+            "email": "bimax270702@gmail.com"
+        }
+    ],
+    "require": {}
+}
