@@ -19,7 +19,8 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blog = auth()->user()->blog()->find($id);
+        $blog = auth()->user()->blog()->find($id); #Mấy câu query xử lý dữ liệu anh muốn sẽ được đẩy sang service, controller chỉ điều hướng việc xử lý
+        #và trả về kết quả (1)
 
         if (!$blog) {
             return response()->json([
@@ -39,11 +40,13 @@ class BlogController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'detail' => 'required'
-        ]);
+        ]); # Cái này cũng ok rồi đó.
+        # Giờ anh muốn tích hợp validation kiểu khác không như kiểu này, sẽ tạo ra 1 thư mục riêng nằm trong thư mục Requests (2)
 
         $blog = new Blog();
         $blog->name = $request->name;
         $blog->detail = $request->detail;
+        # Nguyên phần này tương tự (1)
 
         if (auth()->user()->blog()->save($blog))
             return response()->json([
@@ -59,7 +62,7 @@ class BlogController extends Controller
 
     public function update(Request $request, $id)
     {
-        $blog = auth()->user()->blog()->find($id);
+        $blog = auth()->user()->blog()->find($id); #Tương tự (1)
 
         if (!$blog) {
             return response()->json([
@@ -68,7 +71,7 @@ class BlogController extends Controller
             ], 400);
         }
 
-        $updated = $blog->fill($request->all())->save();
+        $updated = $blog->fill($request->all())->save(); #Tương tự (1)
 
         if ($updated)
             return response()->json([
@@ -83,7 +86,7 @@ class BlogController extends Controller
     }
     public function destroy($id)
     {
-        $blog = auth()->user()->blog()->find($id);
+        $blog = auth()->user()->blog()->find($id); #Tương tự (1)
 
         if (!$blog) {
             return response()->json([
